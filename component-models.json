@@ -4645,5 +4645,15 @@
         ]
       }
     ]
+  },
+  {
+    "id": "service-list",
+    "fields": [
+      {
+        "component": "text",
+        "name": "endpoint",
+        "label": "GraphQL Endpoint"
+      }
+    ]
   }
 ]
