@@ -1,8 +1,6 @@
 {
   "mappings": [
-    "/content/wa-portal/:/",
-    "/content/wa-portal/configuration:/.helix/config.json",
-    "/content/wa-portal/metadata:/metadata.json"
+    "/content/wa-portal/:/"
   ],
   "includes": [
     "/content/wa-portal/"
