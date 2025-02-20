@@ -1,5 +1,0 @@
-mountpoints:
-  /:
-    url: https://author-p49252-e308251.adobeaemcloud.com/bin/franklin.delivery/jfoxx/warp/main
-    type: "markup"
-    suffix: ".html"
