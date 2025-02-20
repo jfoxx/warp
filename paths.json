@@ -1,8 +1,0 @@
-{
-  "mappings": [
-    "/content/wa-portal/:/"
-  ],
-  "includes": [
-    "/content/wa-portal/"
-  ]
-}
