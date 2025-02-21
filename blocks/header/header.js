@@ -1,5 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import { checkLoginStatus } from '../../scripts/scripts.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -141,7 +142,7 @@ export default async function decorate(block) {
   const navTools = nav.querySelector('.nav-tools');
   if (navTools) {
     const firstName = localStorage.getItem('firstName');
-    if (firstName) {
+    if (checkLoginStatus()) {
       const welcome = document.createElement('span');
       welcome.className = 'welcome-message';
       welcome.innerHTML = `Welcome, ${firstName}`;
