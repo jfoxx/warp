@@ -145,11 +145,37 @@ header .nav-brand {
   font-size: var(--heading-font-size-s);
   font-weight: 700;
   line-height: 1;
+  display: flex;
+
+  &::before {
+    content: '';
+    background: var(--blue);
+    width: 1px;
+    height: calc(var(--nav-height) - 20px);
+    display: block;
+    order: 2;
+    margin: 10px;
+  }
 }
 
 header nav .nav-brand img {
   width: 128px;
   height: auto;
+}
+
+header nav .nav-brand .default-content-wrapper {
+  order: 3;
+}
+
+
+header nav .nav-brand .logo {
+  width: 120px;
+  height: 80px;
+  padding-right: 20px;
+  background-color: var(--blue);
+  display: inline-block;
+  mask-repeat: no-repeat;
+  order: 1;
 }
 
 /* sections */
@@ -272,4 +298,10 @@ header nav .nav-sections ul > li > ul > li {
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
+}
+
+.welcome-message {
+  display: inline-block;
+  margin-right: 20px;
+  font-size: var(--body-font-size-s);
 }

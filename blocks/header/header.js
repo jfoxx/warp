@@ -4,6 +4,11 @@ import { loadFragment } from '../fragment/fragment.js';
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
+function handleLogout() {
+  localStorage.removeItem('firstName');
+  window.location.reload();
+}
+
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
@@ -114,6 +119,10 @@ export default async function decorate(block) {
     brandLink.className = '';
     brandLink.closest('.button-container').className = '';
   }
+  const logo = document.createElement('span');
+  logo.className = 'logo';
+  logo.style.maskImage = 'url(/icons/logo.svg)';
+  navBrand.prepend(logo);
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
@@ -127,6 +136,22 @@ export default async function decorate(block) {
         }
       });
     });
+  }
+
+  const navTools = nav.querySelector('.nav-tools');
+  if (navTools) {
+    const firstName = localStorage.getItem('firstName');
+    if (firstName) {
+      const welcome = document.createElement('span');
+      welcome.className = 'welcome-message';
+      welcome.innerHTML = `Welcome, ${firstName}`;
+      const logout = document.createElement('button');
+      logout.className = 'logout button';
+      logout.innerText = 'Sign Out';
+      logout.addEventListener('click', handleLogout);
+      navTools.innerText = '';
+      navTools.append(welcome, logout);
+    }
   }
 
   // hamburger for mobile

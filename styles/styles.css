@@ -11,8 +11,13 @@
  */
 
 :root {
+  /* WARP Colors */
+  --blue: #28485d;
+  --green: #38807c;
+  --light-blue: #b6ebfc;
+
   /* colors */
-  --link-color: #035fe6;
+  --link-color: var(--green);
   --link-hover-color: #136ff6;
   --background-color: white;
   --light-color: #eee;
@@ -38,7 +43,7 @@
   --heading-font-size-xs: 18px;
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 90px;
 }
 
 @font-face {
