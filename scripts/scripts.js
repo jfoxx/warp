@@ -13,6 +13,13 @@ import {
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
+export function checkLoginStatus() {
+  if (localStorage.getItem('firstName')) {
+    return true;
+  }
+  return false;
+}
+
 /**
  * overlays icon to make it an image mask instead of an img.
  * @param {Element, String, String} span The icon span element
