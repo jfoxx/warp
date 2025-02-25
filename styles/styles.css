@@ -17,6 +17,7 @@
   --light-blue: #b6ebfc;
   --light-gray: #e3e3e3;
   --red: #d61f1f;
+  --yellow: #ebdd71;
 
 
   /* colors */
@@ -215,4 +216,12 @@ main .section {
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
+}
+
+body .section[data-userstate='logged-in'] {
+  display: none;
+}
+
+body.logged-in .section[data-userstate='logged-in'] {
+  display: block;
 }

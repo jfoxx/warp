@@ -13,6 +13,7 @@ function handleLogin() {
     form.classList.add('submitting');
     localStorage.setItem('firstName', userMatch[0].firstName);
     localStorage.setItem('lastName', userMatch[0].lastName);
+    localStorage.setItem('alerts', userMatch[0].alerts);
 
     setTimeout(() => {
       window.location = '/';

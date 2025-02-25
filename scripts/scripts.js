@@ -152,6 +152,9 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+    if (checkLoginStatus()) {
+      document.body.classList.add('logged-in');
+    }
     document.body.classList.add('appear');
     await waitForLCP(LCP_BLOCKS);
   }
