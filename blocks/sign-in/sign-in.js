@@ -11,6 +11,7 @@ function handleLogin() {
   const userMatch = findUser(allusers, username);
   if (userMatch.length > 0) {
     form.classList.add('submitting');
+    localStorage.setItem('username', userMatch[0].username);
     localStorage.setItem('firstName', userMatch[0].firstName);
     localStorage.setItem('lastName', userMatch[0].lastName);
     localStorage.setItem('alerts', userMatch[0].alerts);

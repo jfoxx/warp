@@ -35,17 +35,6 @@ function filterKeyword(keyword) {
   });
 }
 
-function handleSearch() {
-  const field = document.querySelector('input.search-field');
-  let keyword = field.value;
-  keyword = encodeURIComponent(keyword);
-  window.location.search = `q=${keyword}`;
-  const searchResults = document.querySelector('.search-results');
-  searchResults.textContent = '';
-  fetchAndDisplayServices(searchResults, 'https://publish-p49252-e308251.adobeaemcloud.com/graphql/execute.json/warp/allServices');
-  filterKeyword(keyword);
-}
-
 function loopProperty(property) {
   const arr = [];
   property.forEach((i) => {
@@ -92,6 +81,7 @@ async function fetchAndDisplayServices(target, endpoint) {
 
     services.forEach((service) => {
       const li = document.createElement('li');
+      li.id = `serviceid-${service.serviceId}`;
       const agencyTag = service.agency[0].toString();
       li.dataset.agency = getAgency(agencyTag);
       li.dataset.income = loopProperty(service.income);
@@ -133,6 +123,17 @@ async function fetchAndDisplayServices(target, endpoint) {
   } catch (error) {
     console.error('Error fetching services:', error);
   }
+}
+
+function handleSearch() {
+  const field = document.querySelector('input.search-field');
+  let keyword = field.value;
+  keyword = encodeURIComponent(keyword);
+  window.location.search = `q=${keyword}`;
+  const searchResults = document.querySelector('.search-results');
+  searchResults.textContent = '';
+  fetchAndDisplayServices(searchResults, 'https://publish-p49252-e308251.adobeaemcloud.com/graphql/execute.json/warp/allServices');
+  filterKeyword(keyword);
 }
 
 export default function decorate(block) {
@@ -288,10 +289,9 @@ export default function decorate(block) {
   button.innerText = 'GO';
   searchField.append(field, button);
   searchFieldWrapper.append(searchField, searchFilters, searchResults);
-  block.append(searchFieldWrapper);  
-  
-  button.addEventListener('click', handleSearch);
+  block.append(searchFieldWrapper);
 
+  button.addEventListener('click', handleSearch);
 
   fetchAndDisplayServices(searchResults, 'https://publish-p49252-e308251.adobeaemcloud.com/graphql/execute.json/warp/allServices');
 }
