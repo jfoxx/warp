@@ -204,6 +204,14 @@ header nav .nav-sections ul > li {
   font-weight: 700;
 }
 
+header nav .nav-sections ul > li.logged-in-only {
+  display: none;
+}
+
+body.logged-in header nav .nav-sections ul > li.logged-in-only {
+  display: block;
+}
+
 header nav .nav-sections ul > li > ul {
   margin-top: 0;
 }

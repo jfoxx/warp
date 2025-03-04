@@ -18,8 +18,15 @@ function dismissAlert() {
 }
 
 export default function decorate(block) {
-  const alerts = localStorage.getItem('alerts').split('|');
-  if (alerts) {
+  const storedAlerts = localStorage.getItem('alerts');
+  if (storedAlerts) {
+    let alerts;
+    if (storedAlerts.includes('|')) {
+      alerts = storedAlerts.split('|');
+    } else {
+      alerts = [storedAlerts];
+    }
+
     const alertList = document.createElement('ul');
     alerts.forEach((a) => {
       const li = document.createElement('li');

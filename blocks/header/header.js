@@ -92,6 +92,22 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   }
 }
 
+function loggedInNavItems() {
+  const navItems = document.querySelectorAll('.nav-sections li');
+  navItems.forEach((item) => {
+    if (item.innerText.includes(':$:')) {
+      item.classList.add('logged-in-only');
+      const link = item.querySelector('a');
+      if (link) {
+        item.textContent = '';
+        item.append(link);
+      } else {
+        item.innerText = item.innerText.replace(':$:', '');
+      }
+    }
+  });
+}
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -172,4 +188,5 @@ export default async function decorate(block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+  loggedInNavItems();
 }
