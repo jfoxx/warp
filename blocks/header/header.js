@@ -92,7 +92,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   }
 }
 
-function loggedInNavItems() { 
+function loggedInNavItems() {
   const navItems = document.querySelectorAll('.nav-sections li');
   navItems.forEach((item) => {
     if (item.innerText.includes(':$:')) {
@@ -104,7 +104,6 @@ function loggedInNavItems() {
       } else {
         item.innerText = item.innerText.replace(':$:', '');
       }
-      
     }
   });
 }
