@@ -14,6 +14,7 @@ function handleLogin() {
     localStorage.setItem('username', userMatch[0].username);
     localStorage.setItem('firstName', userMatch[0].firstName);
     localStorage.setItem('lastName', userMatch[0].lastName);
+    localStorage.setItem('email', userMatch[0].email);
     localStorage.setItem('alerts', userMatch[0].alerts);
 
     setTimeout(() => {
