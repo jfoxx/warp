@@ -20,6 +20,38 @@ export function checkLoginStatus() {
   return false;
 }
 
+function initModals() {
+  const modals = document.querySelectorAll('.section[data-modal]');
+  const body = document.querySelector('body');
+  const backdrop = document.createElement('div');
+  backdrop.classList.add('modal-backdrop');
+  modals.forEach((modal) => {
+    modal.id = modal.getAttribute('data-modal-id');
+    const trigger = document.querySelector(`a[href="#${modal.id}"]`);
+    const closeButton = document.createElement('button');
+    closeButton.innerHTML = 'Close';
+    closeButton.classList.add('close');
+    modal.prepend(closeButton);
+    trigger.addEventListener('click', () => {
+      modal.classList.add('open');
+      body.classList.add('modal-open');
+      body.append(backdrop);
+    });
+    closeButton.addEventListener('click', () => {
+      modal.classList.remove('open');
+      body.classList.remove('modal-open');
+      body.removeChild(backdrop);
+    });
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) {
+        modal.classList.remove('open');
+        body.classList.remove('modal-open');
+        body.removeChild(backdrop);
+      }
+    });
+  });
+}
+
 /**
  * Loads a non module JS file.
  * @param {string} src URL to the JS file
@@ -183,6 +215,7 @@ async function loadLazy(doc) {
 
   loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
+  initModals();
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
