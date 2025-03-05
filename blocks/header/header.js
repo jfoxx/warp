@@ -7,6 +7,11 @@ const isDesktop = window.matchMedia('(min-width: 900px)');
 
 function handleLogout() {
   localStorage.removeItem('firstName');
+  localStorage.removeItem('lastName');
+  localStorage.removeItem('email');
+  localStorage.removeItem('alerts');
+  localStorage.removeItem('savedServices');
+  localStorage.removeItem('username');
   window.location.reload();
 }
 
