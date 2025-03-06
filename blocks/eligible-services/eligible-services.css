@@ -21,6 +21,27 @@
             padding: 0.5em 1em;
             margin-right: 1em;
 
+            &.saved {
+                background-color: var(--green);
+                color: white;
+                position: relative;
+                padding-right: 40px;
+
+                &::after {
+                    content: '';
+                    mask-image: url('/icons/check.svg');
+                    mask-repeat: no-repeat;
+                    width: 20px;
+                    height: 20px;
+                    display: inline-block;
+                    position: absolute;
+                    right: 5px;
+                    top: 5px;
+                    background-color: white;
+                    z-index: 2;
+                }
+            }
+
         }
     }
 
