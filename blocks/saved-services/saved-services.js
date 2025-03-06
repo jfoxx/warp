@@ -1,6 +1,7 @@
 async function fetchAndDisplaySavedServices(serviceId, target) {
+  const randomNumber = Math.floor(Math.random() * 1000);
   try {
-    const response = await fetch(`https://publish-p49252-e308251.adobeaemcloud.com/graphql/execute.json/warp/getServiceById;id=${serviceId}`);
+    const response = await fetch(`https://publish-p49252-e308251.adobeaemcloud.com/graphql/execute.json/warp/getServiceById;id=${serviceId}?${randomNumber}`);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -25,8 +26,7 @@ async function fetchAndDisplaySavedServices(serviceId, target) {
 
 function getSavedServices(block) {
   const savedServices = localStorage.getItem('savedServices');
-  if (savedServices !== '[]') {
-    console.log(savedServices.length);
+  if (savedServices !== '[]' && savedServices) {
     const ul = document.createElement('ul');
     ul.classList.add('saved-service-list');
     const services = JSON.parse(savedServices);
