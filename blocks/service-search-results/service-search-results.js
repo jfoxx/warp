@@ -1,3 +1,5 @@
+const randomNumber = Math.floor(Math.random() * 1000);
+
 function getIcon(tag) {
   const units = tag.split('/');
   let icon = units[1].toString();
@@ -151,7 +153,7 @@ function handleSearch() {
   window.location.search = `q=${keyword}`;
   const searchResults = document.querySelector('.search-results');
   searchResults.textContent = '';
-  fetchAndDisplayServices(searchResults, 'https://publish-p49252-e308251.adobeaemcloud.com/graphql/execute.json/warp/allServices');
+  fetchAndDisplayServices(searchResults, `https://publish-p49252-e308251.adobeaemcloud.com/graphql/execute.json/warp/allServices?${randomNumber}`);
   filterKeyword(keyword);
 }
 
@@ -311,7 +313,5 @@ export default function decorate(block) {
   block.append(searchFieldWrapper);
 
   button.addEventListener('click', handleSearch);
-  const cacheBuster = Math.random().toString(36).substring(7);
-
-  fetchAndDisplayServices(searchResults, `https://publish-p49252-e308251.adobeaemcloud.com/graphql/execute.json/warp/allServices?${cacheBuster}`);
+  fetchAndDisplayServices(searchResults, `https://publish-p49252-e308251.adobeaemcloud.com/graphql/execute.json/warp/allServices?${randomNumber}`);
 }

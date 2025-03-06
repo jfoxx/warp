@@ -105,7 +105,8 @@ async function fetchAndDisplayServices(target, endpoint) {
 }
 
 export default function decorate(block) {
-  fetchAndDisplayServices(block, 'https://publish-p49252-e308251.adobeaemcloud.com/graphql/execute.json/warp/allServices');
+  const randomNumber = Math.floor(Math.random() * 1000);
+  fetchAndDisplayServices(block, `https://publish-p49252-e308251.adobeaemcloud.com/graphql/execute.json/warp/allServices?${randomNumber}`);
   const action = document.createElement('div');
   action.classList.add('eligible-services-actions');
   const selectButton = document.createElement('button');

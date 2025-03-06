@@ -1,6 +1,7 @@
 async function fetchAndDisplaySavedServices(serviceId, target) {
+  const randomNumber = Math.floor(Math.random() * 1000);
   try {
-    const response = await fetch(`https://publish-p49252-e308251.adobeaemcloud.com/graphql/execute.json/warp/getServiceById;id=${serviceId}`);
+    const response = await fetch(`https://publish-p49252-e308251.adobeaemcloud.com/graphql/execute.json/warp/getServiceById;id=${serviceId}?${randomNumber}`);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
