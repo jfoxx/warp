@@ -75,10 +75,10 @@ async function fetchAndDisplayServices(target, endpoint) {
     services.forEach((service) => {
       const li = document.createElement('li');
       li.id = `serviceid-${service.serviceId}`;
-      li.dataset.income = loopProperty(service.income);
-      li.dataset.military = loopProperty(service.military);
-      li.dataset.employment = loopProperty(service.employment);
-      li.dataset.keywords = service.keywords;
+      if (service.income) { li.dataset.income = loopProperty(service.income); }
+      if (service.military) { li.dataset.military = loopProperty(service.military); }
+      if (service.employment) { li.dataset.employment = loopProperty(service.employment); }
+      if (service.keywords) { li.dataset.keywords = service.keywords; }
       const a = document.createElement('a');
       a.href = service.link || '#';
       const checkbox = document.createElement('input');

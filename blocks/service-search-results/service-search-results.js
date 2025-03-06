@@ -83,14 +83,33 @@ async function fetchAndDisplayServices(target, endpoint) {
       const li = document.createElement('li');
       li.id = `serviceid-${service.serviceId}`;
       const agencyTag = service.agency[0].toString();
-      li.dataset.agency = getAgency(agencyTag);
-      li.dataset.income = loopProperty(service.income);
-      li.dataset.military = loopProperty(service.military);
-      li.dataset.employment = loopProperty(service.employment);
-      li.dataset.keywords = service.keywords;
+      if (agencyTag !== null) { li.dataset.agency = getAgency(agencyTag); }
+      if (service.income) { li.dataset.income = loopProperty(service.income); }
+      if (service.military) { li.dataset.military = loopProperty(service.military); }
+      if (service.employment) { li.dataset.employment = loopProperty(service.employment); }
+      if (service.keywords) { li.dataset.keywords = service.keywords; }
       const a = document.createElement('a');
       a.href = service.link || '#';
-
+      if (service.relatedServices) { a.dataset.related = loopProperty(service.relatedServices); }
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (a.dataset.related) {
+          const related = a.dataset.related.split(' ');
+          if (localStorage.getItem('relatedServices')) {
+            const saved = JSON.parse(localStorage.getItem('relatedServices'));
+            related.forEach((r) => {
+              if (!saved.includes(r)) {
+                saved.push(r);
+              }
+            });
+            localStorage.setItem('relatedServices', JSON.stringify(saved));
+          } else {
+            localStorage.setItem('relatedServices', JSON.stringify(related));
+          }
+        }
+        const url = a.href;
+        window.location.href = url;
+      });
       const iconSpan = document.createElement('span');
       iconSpan.className = 'icon';
       const icon = getIcon(service.icon[0].toString());
@@ -292,6 +311,7 @@ export default function decorate(block) {
   block.append(searchFieldWrapper);
 
   button.addEventListener('click', handleSearch);
+  const cacheBuster = Math.random().toString(36).substring(7);
 
-  fetchAndDisplayServices(searchResults, 'https://publish-p49252-e308251.adobeaemcloud.com/graphql/execute.json/warp/allServices');
+  fetchAndDisplayServices(searchResults, `https://publish-p49252-e308251.adobeaemcloud.com/graphql/execute.json/warp/allServices?${cacheBuster}`);
 }

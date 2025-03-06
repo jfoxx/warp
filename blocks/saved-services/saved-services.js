@@ -25,8 +25,7 @@ async function fetchAndDisplaySavedServices(serviceId, target) {
 
 function getSavedServices(block) {
   const savedServices = localStorage.getItem('savedServices');
-  if (savedServices !== '[]') {
-    console.log(savedServices.length);
+  if (savedServices !== '[]' && savedServices) {
     const ul = document.createElement('ul');
     ul.classList.add('saved-service-list');
     const services = JSON.parse(savedServices);
