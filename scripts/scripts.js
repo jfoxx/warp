@@ -20,6 +20,22 @@ export function checkLoginStatus() {
   return false;
 }
 
+function overrideFormSubmit(form) {
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const message = document.createElement('div');
+    message.innerHTML = 'Your request has been submitted. <a href="/">Return home</a>';
+    form.replaceWith(message);
+    window.localStorage.setItem('activeRequests', JSON.stringify({
+      title: 'Toll Dispute',
+      status: {
+        percentage: 5,
+        description: 'In Progress',
+      },
+    }));
+  });
+}
+
 function updateProfile() {
   const form = document.querySelector('#update-profile form');
   const button = form.querySelector('button');
@@ -272,6 +288,10 @@ async function loadLazy(doc) {
 
   if (document.querySelector('#update-profile form')) {
     updateProfile();
+  }
+
+  if (document.querySelector('form[data-formpath="/content/forms/af/washington/toll-dispute/jcr:content/guideContainer"]')) {
+    document.querySelectorAll('form[data-formpath="/content/forms/af/washington/toll-dispute/jcr:content/guideContainer"]').forEach((form) => overrideFormSubmit(form));
   }
 }
 
