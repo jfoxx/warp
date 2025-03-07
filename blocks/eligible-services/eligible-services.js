@@ -24,12 +24,16 @@ function selectAll() {
 }
 
 function saveFavorites() {
+  const button = document.querySelector('.eligible-services-actions button:last-of-type');
+  button.classList.add('saved');
   const checkboxes = document.querySelectorAll('.service-list input[type=checkbox]:checked');
   const favorites = [];
   checkboxes.forEach((checkbox) => {
     favorites.push(checkbox.value);
   });
   localStorage.setItem('savedServices', JSON.stringify(favorites));
+  const url = new URL(`${window.location.origin}${window.location.pathname}`);
+  window.location = url;
 }
 
 function filterResults() {
@@ -56,8 +60,13 @@ function filterResults() {
     i.parentElement.removeChild(i);
   });
 
-  container.classList.add('flipped');
-  container.scrollTop = 0;
+  const button = form.querySelector('button');
+  button.classList.add('submitting');
+
+  setTimeout(() => {
+    container.classList.add('flipped');
+    container.scrollTop = 0;
+  }, '2000');
 }
 
 async function fetchAndDisplayServices(target, endpoint) {

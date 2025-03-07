@@ -269,3 +269,90 @@ body.logged-in .section[data-userstate='logged-in'] {
   background-color: rgb(0 0 0 / 50%);
   z-index: 20;
 }
+
+/* Section Columns */
+/*  stylelint-disable no-descending-specificity */
+
+@media (width >= 900px ) {
+  main .section[data-layout] .layout-wrapper {
+    flex-direction: row;
+    display: flex;
+  }
+
+  main .section[data-layout="50/50"] .layout-wrapper > div {
+    flex: 0 1 calc(50% - 20px);
+    margin-right: 20px;
+  }
+  
+  main .section[data-layout="40/60"] .layout-wrapper > div {
+    flex: 0 1 60%;
+
+    &:first-of-type {
+      flex: 0 1 calc(40% - 20px);
+      margin-right: 20px;
+    }
+  }
+  
+  main .section[data-layout="60/40"] .layout-wrapper > div {
+    flex: 0 1 40%;
+
+    &:first-of-type {
+      flex: 0 1 calc(60% - 20px);
+      margin-right: 20px;
+    }
+  }
+
+  main .section[data-layout="70/30"] .layout-wrapper > div {
+    flex: 0 1 30%;
+
+    &:first-of-type {
+      flex: 0 1 calc(70% - 20px);
+      margin-right: 20px;
+    }
+  }
+
+  main .section[data-layout="30/70"] .layout-wrapper > div {
+    flex: 0 1 70%;
+
+    &:first-of-type {
+      flex: 0 1 calc(30% - 20px);
+      margin-right: 20px;
+    }
+  }
+  
+  main .section[data-layout="25/75"] .layout-wrapper > div {
+    flex: 0 1 75%;
+
+    &:first-of-type {
+      flex: 0 1 calc(25% - 20px);
+      margin-right: 20px;
+    }
+  }
+  
+  main .section[data-layout="75/25"] .layout-wrapper > div {
+    flex: 0 1 25%;
+
+    &:last-of-type {
+      flex: 0 1 calc(75% - 20px);
+      margin-right: 20px;
+    }
+  }
+
+  main .section[data-layout="80/20"] .layout-wrapper > div {
+    flex: 0 1 20%;
+
+    &:first-of-type {
+      flex: 0 1 calc(80% - 20px);
+      margin-right: 20px;
+    }
+  }
+
+  main .section[data-layout="20/80"] .layout-wrapper > div {
+    flex: 0 1 80%;
+
+    &:first-of-type {
+      flex: 0 1 calc(20% - 20px);
+      margin-right: 20px;
+    }
+  }
+}
