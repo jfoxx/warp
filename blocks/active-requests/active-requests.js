@@ -2,7 +2,7 @@ export default function decorate(block) {
   block.textContent = '';
   const activeRequest = JSON.parse(window.localStorage.getItem('activeRequests')) || [];
   console.log(activeRequest);
-  if (activeRequest) {
+  if (activeRequest.length > 0) {
     const sectionTitle = document.createElement('h3');
     sectionTitle.textContent = 'Active Requests';
     block.appendChild(sectionTitle);
