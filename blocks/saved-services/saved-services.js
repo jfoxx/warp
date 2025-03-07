@@ -17,7 +17,7 @@ async function fetchAndDisplaySavedServices(serviceId, target) {
     const descriptionSpan = document.createElement('span');
     descriptionSpan.className = 'description';
     descriptionSpan.textContent = service.description.plaintext || 'No Description';
-    link.append(titleSpan, descriptionSpan);
+    link.append(titleSpan);
     target.appendChild(link);
   } catch (error) {
     console.error('Error fetching and displaying services:', error);

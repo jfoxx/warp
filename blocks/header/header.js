@@ -6,12 +6,9 @@ import { checkLoginStatus } from '../../scripts/scripts.js';
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
 function handleLogout() {
-  localStorage.removeItem('firstName');
-  localStorage.removeItem('lastName');
-  localStorage.removeItem('email');
-  localStorage.removeItem('alerts');
-  localStorage.removeItem('savedServices');
-  localStorage.removeItem('username');
+  ['firstName', 'lastName', 'phone', 'email', 'address', 'city', 'state', 'zip', 'alerts', 'savedServices', 'relatedServices', 'username'].forEach((item) => {
+    localStorage.removeItem(item);
+  });
   window.location.reload();
 }
 

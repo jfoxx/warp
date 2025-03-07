@@ -1,3 +1,7 @@
+.service-search-results-wrapper {
+    padding-top: 100px;
+}
+
 .service-search-results {
     .search-wrapper {
         display: grid;

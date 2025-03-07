@@ -32,6 +32,8 @@ function saveFavorites() {
     favorites.push(checkbox.value);
   });
   localStorage.setItem('savedServices', JSON.stringify(favorites));
+  const url = new URL(`${window.location.origin}${window.location.pathname}`);
+  window.location = url;
 }
 
 function filterResults() {

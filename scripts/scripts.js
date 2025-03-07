@@ -20,6 +20,24 @@ export function checkLoginStatus() {
   return false;
 }
 
+function updateProfile() {
+  const form = document.querySelector('#update-profile form');
+  const button = form.querySelector('button');
+  button.addEventListener('click', (event) => {
+    event.preventDefault();
+    const profile = {};
+    ['firstName', 'lastName', 'email', 'phone', 'state'].forEach((property) => {
+      const input = form.querySelector(`*[name="${property}"]`);
+      console.log(input.value);
+      if (input.value) {
+        profile[property] = input.value;
+        window.localStorage.setItem(property, input.value);
+      }
+    });
+    window.location = window.location.pathname;
+  });
+}
+
 function initModals() {
   const modals = document.querySelectorAll('.section[data-modal]');
   const body = document.querySelector('body');
@@ -74,6 +92,32 @@ export async function loadScript(src, attrs) {
     } else {
       resolve();
     }
+  });
+}
+
+/**
+ * Builds two column grid.
+ * @param {Element} main The container element
+ */
+function buildLayoutContainer(main) {
+  main.querySelectorAll(':scope > .section[data-layout]').forEach((section) => {
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('layout-wrapper');
+    const leftDiv = document.createElement('div');
+    leftDiv.classList.add('left-column');
+    const rightDiv = document.createElement('div');
+    rightDiv.classList.add('right-column');
+    let current = leftDiv;
+    [...section.children].forEach((child) => {
+      if (child.classList.contains('column-separator-wrapper')) {
+        current = rightDiv;
+        child.remove();
+        return;
+      }
+      current.append(child);
+    });
+    wrapper.append(leftDiv, rightDiv);
+    section.append(wrapper);
   });
 }
 
@@ -181,9 +225,11 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+    buildLayoutContainer(main);
     if (checkLoginStatus()) {
       document.body.classList.add('logged-in');
     }
@@ -223,6 +269,10 @@ async function loadLazy(doc) {
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
+
+  if (document.querySelector('#update-profile form')) {
+    updateProfile();
+  }
 }
 
 /**
