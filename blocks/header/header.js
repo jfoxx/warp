@@ -6,7 +6,7 @@ import { checkLoginStatus } from '../../scripts/scripts.js';
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
 function handleLogout() {
-  ['firstName', 'lastName', 'phone', 'email', 'address', 'city', 'state', 'zip', 'alerts', 'savedServices', 'relatedServices', 'username'].forEach((item) => {
+  ['firstName', 'lastName', 'phone', 'email', 'address', 'city', 'state', 'zip', 'alerts', 'savedServices', 'relatedServices', 'username', 'activeRequests'].forEach((item) => {
     localStorage.removeItem(item);
   });
   window.location.reload();
